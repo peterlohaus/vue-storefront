@@ -15,7 +15,6 @@ In case of adaption the following files need to be replaced:
 ```
 config.json
 fontello.woff
-fontello.woff2
 LICENSE.txt
 README.txt
 ```
