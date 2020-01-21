@@ -1,26 +1,45 @@
-// @font-face {
-//     font-family: 'Material Icons';
-//     font-style: normal;
-//     font-weight: 400;
-//     src: local('Material Icons'),
-//       local('MaterialIcons-Regular'),
-//       url('../assets/fonts/MaterialIcons-Regular.woff2') format('woff2'),
-//       url('../assets/fonts/MaterialIcons-Regular.woff') format('woff'),
-// ;
-// }
+$buttonSize: 36px;
 
-// .material-icons {
-//   font-family: 'Material Icons';
-//   font-weight: normal;
-//   font-style: normal;
-//   font-size: 24px;
-//   line-height: 1;
-//   letter-spacing: normal;
-//   text-transform: none;
-//   display: inline-block;
-//   white-space: nowrap;
-//   word-wrap: normal;
-//   direction: ltr;
-//   -webkit-font-feature-settings: 'liga';
-//   -webkit-font-smoothing: antialiased;
-// }
+@font-face {
+  font-family: "Fontello Icons";
+  src: url("../assets/fonts/fontello/fontello.woff2") format("woff2"),
+    url("../assets/fonts/fontello/fontello.woff") format("woff");
+}
+
+.icon:before {
+  font-family: "Fontello Icons";
+  font-size: $buttonSize;
+  line-height: 1;
+}
+
+.icon-account:before {
+  content: "\e801";
+}
+
+.icon-mail:before {
+  content: "\f0E0";
+}
+
+.icon-phone:before {
+  content: "\e802";
+}
+
+.icon-cart:before {
+  content: "\e803";
+}
+
+.icon-flag:before {
+  content: "\e804";
+}
+
+.icon-facebook:before {
+  content: "\f230";
+}
+
+.icon-instagram:before {
+  content: "\f16D";
+}
+
+.icon-chat:before {
+  content: "\e800";
+}
