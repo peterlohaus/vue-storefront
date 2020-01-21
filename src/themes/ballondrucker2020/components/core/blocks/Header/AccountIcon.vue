@@ -14,7 +14,7 @@
       type="button"
       class="bg-cl-transparent brdr-none p0"
     >
-      <i class="material-icons block">person</i>
+      <span class="icon icon-account" />
     </button>
 
     <no-ssr>
