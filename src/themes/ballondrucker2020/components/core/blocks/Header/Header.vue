@@ -1,6 +1,25 @@
 <template>
   <div class="header">
-    <header
+    <header class="fixed w-100" :class="{ 'is-visible': navVisible }">
+      <div class="container">
+        <nav class="row" aria-label="account navigation">
+          <PhoneIcon class="col-lg-2 center-lg middle-lg" />
+          <MailIcon class="col-lg-2 center-lg middle-lg" />
+          <AccountIcon class="col-lg-offset-5 col-lg-1 center-lg middle-lg" />
+          <MicrocartIcon class="col-lg-1 center-lg middle-lg" />
+          <LanguageIcon class="col-lg-1 center-lg middle-lg" />
+        </nav>
+        <nav class="row" aria-label="catalog navigation">
+          <SearchIcon class="col-lg-1 center-lg middle-lg" />
+          <CompanyIcon class="col-lg-offset-2 col-lg-6 center-lg middle-lg" />
+          <HamburgerIcon class="col-lg-offset-2 col-lg-1 center-lg middle-lg" />
+        </nav>
+      </div>
+    </header>
+  </div>
+  <!--     
+      <div class="header">
+      <header
       class="fixed w-100 brdr-bottom-1 bg-cl-primary brdr-cl-secondary"
       :class="{ 'is-visible': navVisible }"
     >
@@ -61,22 +80,22 @@
       </div>
     </header>
     <div class="header-placeholder" />
-  </div>
+  </div>-->
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import CurrentPage from 'theme/mixins/currentPage'
-import AccountIcon from 'theme/components/core/blocks/Header/AccountIcon'
-import CompareIcon from 'theme/components/core/blocks/Header/CompareIcon'
-import HamburgerIcon from 'theme/components/core/blocks/Header/HamburgerIcon'
-import Logo from 'theme/components/core/Logo'
-import MicrocartIcon from 'theme/components/core/blocks/Header/MicrocartIcon'
-import SearchIcon from 'theme/components/core/blocks/Header/SearchIcon'
-import WishlistIcon from 'theme/components/core/blocks/Header/WishlistIcon'
+import { mapState } from "vuex";
+import CurrentPage from "theme/mixins/currentPage";
+import AccountIcon from "theme/components/core/blocks/Header/AccountIcon";
+import CompareIcon from "theme/components/core/blocks/Header/CompareIcon";
+import HamburgerIcon from "theme/components/core/blocks/Header/HamburgerIcon";
+import Logo from "theme/components/core/Logo";
+import MicrocartIcon from "theme/components/core/blocks/Header/MicrocartIcon";
+import SearchIcon from "theme/components/core/blocks/Header/SearchIcon";
+import WishlistIcon from "theme/components/core/blocks/Header/WishlistIcon";
 
 export default {
-  name: 'Header',
+  name: "Header",
   components: {
     AccountIcon,
     CompareIcon,
@@ -87,66 +106,70 @@ export default {
     WishlistIcon
   },
   mixins: [CurrentPage],
-  data () {
+  data() {
     return {
       navVisible: true,
       isScrolling: false,
       scrollTop: 0,
       lastScrollTop: 0,
       navbarHeight: 54
-    }
+    };
   },
   computed: {
     ...mapState({
       isOpenLogin: state => state.ui.signUp,
       currentUser: state => state.user.current
     }),
-    isThankYouPage () {
+    isThankYouPage() {
       return this.$store.state.checkout.isThankYouPage
         ? this.$store.state.checkout.isThankYouPage
-        : false
+        : false;
     }
   },
-  beforeMount () {
+  beforeMount() {
     window.addEventListener(
-      'scroll',
+      "scroll",
       () => {
-        this.isScrolling = true
+        this.isScrolling = true;
       },
       { passive: true }
-    )
+    );
 
     setInterval(() => {
       if (this.isScrolling) {
-        this.hasScrolled()
-        this.isScrolling = false
+        this.hasScrolled();
+        this.isScrolling = false;
       }
-    }, 250)
+    }, 250);
   },
   methods: {
-    gotoAccount () {
-      this.$bus.$emit('modal-toggle', 'modal-signup')
+    gotoAccount() {
+      this.$bus.$emit("modal-toggle", "modal-signup");
     },
-    hasScrolled () {
-      this.scrollTop = window.scrollY
+    hasScrolled() {
+      this.scrollTop = window.scrollY;
       if (
         this.scrollTop > this.lastScrollTop &&
         this.scrollTop > this.navbarHeight
       ) {
-        this.navVisible = false
+        this.navVisible = false;
       } else {
-        this.navVisible = true
+        this.navVisible = true;
       }
-      this.lastScrollTop = this.scrollTop
+      this.lastScrollTop = this.scrollTop;
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '~theme/css/variables/colors';
-@import '~theme/css/helpers/functions/color';
+@import "~theme/css/variables/colors";
+@import "~theme/css/helpers/functions/color";
 $color-icon-hover: color(secondary, $colors-background);
+
+* {
+  border: 1px solid red;
+}
 
 header {
   height: 54px;
