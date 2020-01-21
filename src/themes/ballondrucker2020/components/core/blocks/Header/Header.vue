@@ -1,23 +1,23 @@
 <template>
   <div class="header">
     <header class="fixed w-100" :class="{ 'is-visible': navVisible }">
-      <div class="bg-cl-primary">
+      <div class="bg-cl-primary pt15 pb5">
         <div class="container">
           <nav class="row" aria-label="account navigation">
-            <PhoneIcon class="col-lg-2 center-lg middle-lg" />
-            <MailIcon class="col-lg-2 center-lg middle-lg" />
-            <AccountIcon class="col-lg-offset-5 col-lg-1 center-lg middle-lg" />
-            <MicrocartIcon class="col-lg-1 center-lg middle-lg" />
-            <LanguageIcon class="col-lg-1 center-lg middle-lg" />
+            <PhoneIcon class="col-lg-2 center-lg middle-lg pointer" />
+            <MailIcon class="col-lg-2 center-lg middle-lg pointer" />
+            <AccountIcon class="col-lg-offset-5 col-lg-1 center-lg middle-lg pointer" />
+            <MicrocartIcon class="col-lg-1 center-lg middle-lg pointer" />
+            <LanguageIcon class="col-lg-1 center-lg middle-lg pointer" />
           </nav>
         </div>
       </div>
       <div class="bg-cl-secondary">
         <div class="container">
           <nav class="row" aria-label="catalog navigation">
-            <SearchIcon class="col-lg-1 center-lg middle-lg" />
-            <CompanyIcon class="col-lg-offset-2 col-lg-6 center-lg middle-lg" />
-            <HamburgerIcon class="col-lg-offset-2 col-lg-1 center-lg middle-lg" />
+            <SearchIcon class="col-lg-1 center-lg middle-lg pointer" />
+            <CompanyIcon class="col-lg-offset-2 col-lg-6 center-lg middle-lg pointer" />
+            <HamburgerIcon class="col-lg-offset-2 col-lg-1 center-lg middle-lg pointer" />
           </nav>
         </div>
       </div>
