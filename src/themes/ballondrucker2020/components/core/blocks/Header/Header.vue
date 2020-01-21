@@ -4,8 +4,8 @@
       <div class="bg-cl-primary pt15 pb5">
         <div class="container">
           <nav class="row" aria-label="account navigation">
-            <PhoneIcon class="col-lg-2 center-lg middle-lg pointer" />
-            <MailIcon class="col-lg-2 center-lg middle-lg pointer" />
+            <PhoneIcon class="col-lg-2 left-lg middle-lg pointer" />
+            <MailIcon class="col-lg-2 left-lg middle-lg pointer" />
             <AccountIcon class="col-lg-offset-5 col-lg-1 center-lg middle-lg pointer" />
             <MicrocartIcon class="col-lg-1 center-lg middle-lg pointer" />
             <LanguageIcon class="col-lg-1 center-lg middle-lg pointer" />
@@ -99,6 +99,9 @@ import Logo from "theme/components/core/Logo";
 import MicrocartIcon from "theme/components/core/blocks/Header/MicrocartIcon";
 import SearchIcon from "theme/components/core/blocks/Header/SearchIcon";
 import WishlistIcon from "theme/components/core/blocks/Header/WishlistIcon";
+import PhoneIcon from "theme/components/core/blocks/Header/PhoneIcon";
+import MailIcon from "theme/components/core/blocks/Header/MailIcon";
+import LanguageIcon from "theme/components/core/blocks/Header/LanguageIcon";
 
 export default {
   name: "Header",
@@ -109,7 +112,10 @@ export default {
     Logo,
     MicrocartIcon,
     SearchIcon,
-    WishlistIcon
+    WishlistIcon,
+    PhoneIcon,
+    MailIcon,
+    LanguageIcon
   },
   mixins: [CurrentPage],
   data() {

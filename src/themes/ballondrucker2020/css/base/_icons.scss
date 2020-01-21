@@ -1,4 +1,4 @@
-$buttonSize: 36px;
+$buttonSize: 28px;
 
 @font-face {
   font-family: "Fontello Icons";
@@ -28,7 +28,7 @@ $buttonSize: 36px;
   content: "\e803";
 }
 
-.icon-flag:before {
+.icon-language:before {
   content: "\e804";
 }
 
@@ -42,4 +42,12 @@ $buttonSize: 36px;
 
 .icon-chat:before {
   content: "\e800";
+}
+
+.icon-search:before {
+  content: "\e805";
+}
+
+.icon-hamburger:before {
+  content: "\f0C9";
 }
