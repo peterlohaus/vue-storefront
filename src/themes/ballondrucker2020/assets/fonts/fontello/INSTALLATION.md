@@ -8,3 +8,15 @@ Editing fontello icons works as follows:
 4. Replace existing data in this folder
 5. Make sure existing usage of icons is working
 
+Unicode numbers of included icons are listed on http://fontello.com/ in tab `Customize Codes` or by opening `demo.html` and hovering over icons.
+
+In case of adaption the following files need to be replaced:
+
+```
+config.json
+fontello.woff
+fontello.woff2
+LICENSE.txt
+README.txt
+```
+
