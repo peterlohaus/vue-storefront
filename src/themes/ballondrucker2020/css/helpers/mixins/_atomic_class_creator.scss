@@ -1,0 +1,16 @@
+// Creates a set of classes from a map
+///
+/// @param {string} $prefix
+///   The final css class is a concatenated string of prefix and mapvalue.
+/// @param {string} $map
+///   The map of key-value-pairs.
+/// @param {string} $property
+///   The css property used to build a class.
+
+@mixin createClassesFromMap($prefix, $map, $property) {
+    @each $key, $value in $map {
+      .#{$prefix}-#{$key} {
+        #{$property}: $value;
+      }
+    }
+  }
