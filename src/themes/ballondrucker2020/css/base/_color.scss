@@ -14,3 +14,6 @@
 
 // .bg-cl-#{#palette}-{#name-of-color}
 @include color-selectors($colors-theme, 'bg-cl-th', 'background-color');
+
+// Create set of background color classes
+@include createClassesFromMap(bg, $colorset, background-color);

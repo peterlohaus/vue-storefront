@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <header class="fixed w-100" :class="{ 'is-visible': navVisible }">
-      <div class="bg-cl-primary p10">
+      <div class="bg-middleSaturatedChartreuse p10">
         <div class="container">
           <nav class="row" aria-label="account navigation">
             <PhoneIcon class="col-lg-2 start-lg middle-lg pointer" />
@@ -12,7 +12,7 @@
           </nav>
         </div>
       </div>
-      <div class="bg-cl-secondary p10">
+      <div class="bg-middleSaturatedChartreuse p10">
         <div class="container">
           <nav class="row" aria-label="catalog navigation">
             <HamburgerIcon class="col-lg-1 start-lg middle-lg pointer" />

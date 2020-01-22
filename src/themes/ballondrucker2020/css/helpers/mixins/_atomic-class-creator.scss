@@ -8,9 +8,9 @@
 ///   The css property used to build a class.
 
 @mixin createClassesFromMap($prefix, $map, $property) {
-    @each $key, $value in $map {
-      .#{$prefix}-#{$key} {
-        #{$property}: $value;
-      }
+  @each $key, $value in $map {
+    .#{$prefix}-#{$key} {
+      #{$property}: $value;
     }
   }
+}
