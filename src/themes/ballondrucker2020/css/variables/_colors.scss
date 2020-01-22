@@ -58,8 +58,17 @@ $colors-background: (
     hover: map-get($colors, silver)
   ),
   secondary: (
-    default: map-get($colors, white-smoke)),
+    default: map-get($colors, white-smoke),
     hover: map-get($colors, gainsboro)
   ),
   tertiary: map-get($colors, suva-gray)
+);
+
+//Ballondrucker color set
+$colorset: (
+  black: #000,
+  white: #fff,
+  middleSaturatedChartreuse: #9c1,
+  middleSaturatedAzure: #13c,
+  middleSaturatedPurple: #91c
 );
