@@ -1,27 +1,28 @@
 <template>
   <div class="header">
     <header class="fixed w-100" :class="{ 'is-visible': navVisible }">
-      <div class="bg-cl-primary pt15 pb5">
+      <div class="bg-cl-primary p10">
         <div class="container">
           <nav class="row" aria-label="account navigation">
-            <PhoneIcon class="col-lg-2 left-lg middle-lg pointer" />
-            <MailIcon class="col-lg-2 left-lg middle-lg pointer" />
+            <PhoneIcon class="col-lg-2 start-lg middle-lg pointer" />
+            <MailIcon class="col-lg-2 start-lg middle-lg pointer" />
             <AccountIcon class="col-lg-offset-5 col-lg-1 center-lg middle-lg pointer" />
             <MicrocartIcon class="col-lg-1 center-lg middle-lg pointer" />
             <LanguageIcon class="col-lg-1 center-lg middle-lg pointer" />
           </nav>
         </div>
       </div>
-      <div class="bg-cl-secondary">
+      <div class="bg-cl-secondary p10">
         <div class="container">
           <nav class="row" aria-label="catalog navigation">
-            <SearchIcon class="col-lg-1 center-lg middle-lg pointer" />
-            <CompanyIcon class="col-lg-offset-2 col-lg-6 center-lg middle-lg pointer" />
-            <HamburgerIcon class="col-lg-offset-2 col-lg-1 center-lg middle-lg pointer" />
+            <HamburgerIcon class="col-lg-1 start-lg middle-lg pointer" />
+            <CompanyLogo class="col-lg-offset-2 col-lg-6 center-lg middle-lg" :class="{ 'is-visible': navVisible }"/>
+            <SearchIcon class="col-lg-offset-2 col-lg-1 center-lg middle-lg pointer" />
           </nav>
         </div>
       </div>
     </header>
+    <div class="header-placeholder" />
   </div>
   <!--     
       <div class="header">
@@ -95,7 +96,7 @@ import CurrentPage from "theme/mixins/currentPage";
 import AccountIcon from "theme/components/core/blocks/Header/AccountIcon";
 import CompareIcon from "theme/components/core/blocks/Header/CompareIcon";
 import HamburgerIcon from "theme/components/core/blocks/Header/HamburgerIcon";
-import Logo from "theme/components/core/Logo";
+import CompanyLogo from "theme/components/core/CompanyLogo";
 import MicrocartIcon from "theme/components/core/blocks/Header/MicrocartIcon";
 import SearchIcon from "theme/components/core/blocks/Header/SearchIcon";
 import WishlistIcon from "theme/components/core/blocks/Header/WishlistIcon";
@@ -109,13 +110,13 @@ export default {
     AccountIcon,
     CompareIcon,
     HamburgerIcon,
-    Logo,
+    CompanyLogo,
     MicrocartIcon,
     SearchIcon,
     WishlistIcon,
     PhoneIcon,
     MailIcon,
-    LanguageIcon
+    LanguageIcon,
   },
   mixins: [CurrentPage],
   data() {
@@ -124,7 +125,7 @@ export default {
       isScrolling: false,
       scrollTop: 0,
       lastScrollTop: 0,
-      navbarHeight: 54
+      navbarHeight: 96
     };
   },
   computed: {
@@ -179,13 +180,13 @@ export default {
 @import "~theme/css/helpers/functions/color";
 $color-icon-hover: color(secondary, $colors-background);
 
-* {
-  border: 1px solid red;
-}
+// * {
+//   border: 1px solid blue;
+// }
 
 header {
-  height: 54px;
-  top: -55px;
+  height: 96px;
+  top: -48px;
   z-index: 3;
   transition: top 0.2s ease-in-out;
   &.is-visible {
@@ -205,7 +206,7 @@ header {
   float: right;
 }
 .header-placeholder {
-  height: 54px;
+  height: 96px;
 }
 .links {
   text-decoration: underline;
