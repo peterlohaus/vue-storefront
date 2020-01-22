@@ -58,7 +58,7 @@ $colors-background: (
     hover: map-get($colors, silver)
   ),
   secondary: (
-    default: map-get($colors, middleSaturatedChartreuse),
+    default: map-get($colors, white-smoke)),
     hover: map-get($colors, gainsboro)
   ),
   tertiary: map-get($colors, suva-gray)
