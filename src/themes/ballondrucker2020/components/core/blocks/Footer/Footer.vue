@@ -1,5 +1,46 @@
 <template>
-  <footer :class="{ 'brdr-top-1 brdr-cl-secondary': isCheckoutPage }">
+  <footer>
+    <section class="newsletter">
+      <div>
+        <!-- Component -->
+        <Newsletter />
+        <p>COMPONENT_PLACEHOLDER</p>
+      </div>
+    </section>
+    <section class="service">
+      <div>
+        <!-- Component -->
+        <PaymentInformation />
+        <p>COMPONENT_PLACEHOLDER</p>
+      </div>
+      <div>
+        <!-- Component -->
+        <ContactInformation />
+        <p>COMPONENT_PLACEHOLDER</p>
+      </div>
+      <div>
+        <!-- Component -->
+        <CertificateInformation />
+        <p>COMPONENT_PLACEHOLDER</p>
+      </div>
+    </section>
+    <section class="social">
+      <div>
+        <!-- Component -->
+        <SocialPages />
+        <p>COMPONENT_PLACEHOLDER</p>
+      </div>
+    </section>
+    <section class="legal">
+      <div>
+        <!-- Component -->
+        <LegalPages />
+        <p>COMPONENT_PLACEHOLDER</p>
+      </div>
+    </section>
+  </footer>
+
+  <!-- <footer :class="{ 'brdr-top-1 brdr-cl-secondary': isCheckoutPage }">
     <newsletter class=" flex brdr-bottom-1 brdr-cl-secondary" v-if="!isCheckoutPage" />
     <div
       class="footer-links flex pt30 pb60 px40 bg-cl-secondary"
@@ -157,39 +198,42 @@
         </svg>
       </button>
     </back-to-top>
-  </footer>
+  </footer>-->
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import { currentStoreView, localizedRoute } from '@vue-storefront/core/lib/multistore'
-import CurrentPage from 'theme/mixins/currentPage'
-import LanguageSwitcher from '../../LanguageSwitcher.vue'
-import Newsletter from 'theme/components/core/blocks/Footer/Newsletter'
-import BackToTop from 'theme/components/core/BackToTop'
-import { getPathForStaticPage } from 'theme/helpers'
-import config from 'config'
+import { mapGetters } from "vuex";
+import {
+  currentStoreView,
+  localizedRoute
+} from "@vue-storefront/core/lib/multistore";
+import CurrentPage from "theme/mixins/currentPage";
+import LanguageSwitcher from "../../LanguageSwitcher.vue";
+import Newsletter from "theme/components/core/blocks/Footer/Newsletter";
+import BackToTop from "theme/components/core/BackToTop";
+import { getPathForStaticPage } from "theme/helpers";
+import config from "config";
 
 export default {
   mixins: [CurrentPage],
-  name: 'MainFooter',
+  name: "MainFooter",
   methods: {
-    goToAccount () {
-      this.$bus.$emit('modal-toggle', 'modal-signup')
+    goToAccount() {
+      this.$bus.$emit("modal-toggle", "modal-signup");
     },
-    getLinkFor (path) {
-      return localizedRoute(getPathForStaticPage(path))
+    getLinkFor(path) {
+      return localizedRoute(getPathForStaticPage(path));
     }
   },
   computed: {
     ...mapGetters({
-      isLogged: 'user/isLoggedIn'
+      isLogged: "user/isLoggedIn"
     }),
-    multistoreEnabled () {
-      return config.storeViews.multistore
+    multistoreEnabled() {
+      return config.storeViews.multistore;
     },
-    getVersionInfo () {
-      return `v${process.env.__APPVERSION__} ${process.env.__BUILDTIME__}`
+    getVersionInfo() {
+      return `v${process.env.__APPVERSION__} ${process.env.__BUILDTIME__}`;
     }
   },
   components: {
@@ -197,12 +241,12 @@ export default {
     LanguageSwitcher,
     BackToTop
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '~theme/css/variables/colors';
-@import '~theme/css/helpers/functions/color';
+@import "~theme/css/variables/colors";
+@import "~theme/css/helpers/functions/color";
 $color-secondary: color(secondary);
 
 .icon {
@@ -282,6 +326,33 @@ $color-secondary: color(secondary);
 
   .footer-links {
     padding-bottom: 30px;
+  }
+}
+
+* {
+  border: 1px solid blue;
+}
+
+/* 
+Construction of the grid
+*/
+
+@import "~theme/css/vendor/flexboxgrid2";
+
+footer section {
+  @extend .row;
+  &:not(.newsletter) {
+    @extend .container;
+  }
+
+  & div {
+    @extend .col-lg-12, .col-sm-12, .col-xs-12;
+    @extend .center-lg, .center-sm, .center-xs;
+    @extend .middle-lg, .middle-sm, .middle-xs;
+  }
+
+  &.service div {
+    @extend .col-lg-4;
   }
 }
 </style>
