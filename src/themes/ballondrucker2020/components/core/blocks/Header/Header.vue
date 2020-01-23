@@ -166,8 +166,10 @@ export default {
         this.scrollTop > this.navbarHeight
       ) {
         this.navVisible = false;
+        console.log(this.navVisible);
       } else {
         this.navVisible = true;
+        console.log(this.navVisible);
       }
       this.lastScrollTop = this.scrollTop;
     }
