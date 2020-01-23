@@ -1,5 +1,43 @@
 <template>
-  <div id="home">
+  <main>
+    <section class="slider-top">
+      <div>
+        <!-- Component -->
+        <AddComponentHere />
+        <p>COMPONENT_PLACEHOLDER</p>
+      </div>
+    </section>
+    <section class="top-categories">
+      <div>
+        <!-- Component -->
+        <AddComponentHere />
+        <p>COMPONENT_PLACEHOLDER</p>
+      </div>
+    </section>
+    <section class="favorite-categories">
+      <div>
+        <!-- Component -->
+        <AddComponentHere />
+        <p>COMPONENT_PLACEHOLDER</p>
+      </div>
+    </section>
+    <section class="slider-bottom">
+      <div>
+        <!-- Component -->
+        <AddComponentHere />
+        <p>COMPONENT_PLACEHOLDER</p>
+      </div>
+    </section>
+    <section class="blog">
+      <div>
+        <!-- Component -->
+        <AddComponentHere />
+        <p>COMPONENT_PLACEHOLDER</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- <div id="home">
     <head-image />
 
     <promoted-offers />
@@ -31,34 +69,34 @@
       <tile-links />
     </section>
     <Onboard />
-  </div>
+  </div>-->
 </template>
 
 <script>
 // query constructor
-import { isServer, onlineHelper } from '@vue-storefront/core/helpers'
-import LazyHydrate from 'vue-lazy-hydration'
+import { isServer, onlineHelper } from "@vue-storefront/core/helpers";
+import LazyHydrate from "vue-lazy-hydration";
 
 // Core pages
-import Home from '@vue-storefront/core/pages/Home'
+import Home from "@vue-storefront/core/pages/Home";
 // Theme core components
-import ProductListing from 'theme/components/core/ProductListing'
-import HeadImage from 'theme/components/core/blocks/MainSlider/HeadImage'
+import ProductListing from "theme/components/core/ProductListing";
+import HeadImage from "theme/components/core/blocks/MainSlider/HeadImage";
 // Theme local components
-import Onboard from 'theme/components/theme/blocks/Home/Onboard'
-import PromotedOffers from 'theme/components/theme/blocks/PromotedOffers/PromotedOffers'
-import TileLinks from 'theme/components/theme/blocks/TileLinks/TileLinks'
-import {Logger} from '@vue-storefront/core/lib/logger'
-import {mapGetters} from 'vuex'
-import config from 'config'
-import {registerModule} from '@vue-storefront/core/lib/modules'
-import {RecentlyViewedModule} from '@vue-storefront/core/modules/recently-viewed'
+import Onboard from "theme/components/theme/blocks/Home/Onboard";
+import PromotedOffers from "theme/components/theme/blocks/PromotedOffers/PromotedOffers";
+import TileLinks from "theme/components/theme/blocks/TileLinks/TileLinks";
+import { Logger } from "@vue-storefront/core/lib/logger";
+import { mapGetters } from "vuex";
+import config from "config";
+import { registerModule } from "@vue-storefront/core/lib/modules";
+import { RecentlyViewedModule } from "@vue-storefront/core/modules/recently-viewed";
 
 export default {
-  data () {
+  data() {
     return {
       loading: true
-    }
+    };
   },
   mixins: [Home],
   components: {
@@ -70,69 +108,101 @@ export default {
     LazyHydrate
   },
   computed: {
-    ...mapGetters('user', ['isLoggedIn']),
-    ...mapGetters('homepage', ['getEverythingNewCollection']),
-    categories () {
-      return this.getCategories
+    ...mapGetters("user", ["isLoggedIn"]),
+    ...mapGetters("homepage", ["getEverythingNewCollection"]),
+    categories() {
+      return this.getCategories;
     },
-    isOnline () {
-      return onlineHelper.isOnline
+    isOnline() {
+      return onlineHelper.isOnline;
     },
-    isLazyHydrateEnabled () {
-      return config.ssr.lazyHydrateFor.some(
-        field => ['homepage', 'homepage.new_collection'].includes(field)
-      )
+    isLazyHydrateEnabled() {
+      return config.ssr.lazyHydrateFor.some(field =>
+        ["homepage", "homepage.new_collection"].includes(field)
+      );
     }
   },
-  beforeCreate () {
-    registerModule(RecentlyViewedModule)
+  beforeCreate() {
+    registerModule(RecentlyViewedModule);
   },
-  async beforeMount () {
+  async beforeMount() {
     if (this.$store.state.__DEMO_MODE__) {
-      const onboardingClaim = await this.$store.dispatch('claims/check', { claimCode: 'onboardingAccepted' })
-      if (!onboardingClaim) { // show onboarding info
-        this.$bus.$emit('modal-toggle', 'modal-onboard')
-        this.$store.dispatch('claims/set', { claimCode: 'onboardingAccepted', value: true })
+      const onboardingClaim = await this.$store.dispatch("claims/check", {
+        claimCode: "onboardingAccepted"
+      });
+      if (!onboardingClaim) {
+        // show onboarding info
+        this.$bus.$emit("modal-toggle", "modal-onboard");
+        this.$store.dispatch("claims/set", {
+          claimCode: "onboardingAccepted",
+          value: true
+        });
       }
     }
   },
-  mounted () {
-    if (!this.isLoggedIn && localStorage.getItem('redirect')) this.$bus.$emit('modal-show', 'modal-signup')
+  mounted() {
+    if (!this.isLoggedIn && localStorage.getItem("redirect"))
+      this.$bus.$emit("modal-show", "modal-signup");
   },
   watch: {
-    isLoggedIn () {
-      const redirectObj = localStorage.getItem('redirect')
-      if (redirectObj) this.$router.push(redirectObj)
-      localStorage.removeItem('redirect')
+    isLoggedIn() {
+      const redirectObj = localStorage.getItem("redirect");
+      if (redirectObj) this.$router.push(redirectObj);
+      localStorage.removeItem("redirect");
     }
   },
-  async asyncData ({ store, route }) { // this is for SSR purposes to prefetch data
-    Logger.info('Calling asyncData in Home (theme)')()
+  async asyncData({ store, route }) {
+    // this is for SSR purposes to prefetch data
+    Logger.info("Calling asyncData in Home (theme)")();
 
     await Promise.all([
-      store.dispatch('homepage/fetchNewCollection'),
-      store.dispatch('promoted/updateHeadImage'),
-      store.dispatch('promoted/updatePromotedOffers')
-    ])
+      store.dispatch("homepage/fetchNewCollection"),
+      store.dispatch("promoted/updateHeadImage"),
+      store.dispatch("promoted/updatePromotedOffers")
+    ]);
   },
-  beforeRouteEnter (to, from, next) {
-    if (!isServer && !from.name) { // Loading products to cache on SSR render
+  beforeRouteEnter(to, from, next) {
+    if (!isServer && !from.name) {
+      // Loading products to cache on SSR render
       next(vm =>
-        vm.$store.dispatch('homepage/fetchNewCollection').then(res => {
-          vm.loading = false
+        vm.$store.dispatch("homepage/fetchNewCollection").then(res => {
+          vm.loading = false;
         })
-      )
+      );
     } else {
-      next()
+      next();
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
-  .new-collection {
-    @media (max-width: 767px) {
-      padding-top: 0;
-    }
+.new-collection {
+  @media (max-width: 767px) {
+    padding-top: 0;
   }
+}
+
+* {
+  border: 1px solid blue;
+}
+
+/* 
+Construction of the grid
+*/
+
+@import "~theme/css/vendor/flexboxgrid2";
+
+main section {
+  @extend .row;
+  &:not(.slider-top):not(.slider-bottom) {
+    @extend .container;
+  }
+
+  & div {
+    @extend .col-lg-12, .col-sm-12, .col-xs-12;
+    @extend .center-lg, .center-sm, .center-xs;
+    @extend .middle-lg, .middle-sm, .middle-xs;
+  }
+}
 </style>
