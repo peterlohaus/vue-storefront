@@ -39,7 +39,6 @@
       </div>
     </section>
   </footer>
-
   <!-- <footer :class="{ 'brdr-top-1 brdr-cl-secondary': isCheckoutPage }">
     <newsletter class=" flex brdr-bottom-1 brdr-cl-secondary" v-if="!isCheckoutPage" />
     <div
@@ -249,85 +248,85 @@ export default {
 @import "~theme/css/helpers/functions/color";
 $color-secondary: color(secondary);
 
-.icon {
-  transition: 0.3s all;
-}
+// .icon {
+//   transition: 0.3s all;
+// }
 
-.social-icon {
-  width: 40px;
-  height: 40px;
-  &:hover,
-  &:focus,
-  &:active {
-    .icon {
-      fill: $color-secondary;
-    }
-  }
-}
-.links {
-  list-style-type: none;
-  display: flex;
-  flex-direction: column-reverse;
-  align-items: flex-end;
+// .social-icon {
+//   width: 40px;
+//   height: 40px;
+//   &:hover,
+//   &:focus,
+//   &:active {
+//     .icon {
+//       fill: $color-secondary;
+//     }
+//   }
+// }
+// .links {
+//   list-style-type: none;
+//   display: flex;
+//   flex-direction: column-reverse;
+//   align-items: flex-end;
 
-  @media (min-width: 768px) {
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-  }
-}
+//   @media (min-width: 768px) {
+//     flex-direction: row;
+//     justify-content: flex-end;
+//     align-items: center;
+//   }
+// }
 
-.bottom-links {
-  @media (max-width: 767px) {
-    padding: 0;
-  }
-}
+// .bottom-links {
+//   @media (max-width: 767px) {
+//     padding: 0;
+//   }
+// }
 
-.footer__version-info {
-  display: flex;
-  color: $color-secondary;
-  font-size: 0.7rem;
-  @media (min-width: 768px) {
-    margin-right: 1rem;
-    font-size: 0.8rem;
-  }
-}
+// .footer__version-info {
+//   display: flex;
+//   color: $color-secondary;
+//   font-size: 0.7rem;
+//   @media (min-width: 768px) {
+//     margin-right: 1rem;
+//     font-size: 0.8rem;
+//   }
+// }
 
-.underline {
-  &:hover {
-    color: $color-secondary;
-    &:after {
-      background-color: $color-secondary;
-    }
-  }
-}
-.legal-entity-link {
-  text-align: center;
-  @media (min-width: 768px) {
-    display: none;
-  }
-}
+// .underline {
+//   &:hover {
+//     color: $color-secondary;
+//     &:after {
+//       background-color: $color-secondary;
+//     }
+//   }
+// }
+// .legal-entity-link {
+//   text-align: center;
+//   @media (min-width: 768px) {
+//     display: none;
+//   }
+// }
 
-.privacy-policy-link {
-  text-align: right;
-  @media (min-width: 768px) {
-    display: none;
-  }
-}
+// .privacy-policy-link {
+//   text-align: right;
+//   @media (min-width: 768px) {
+//     display: none;
+//   }
+// }
 
-@media (max-width: 595px) {
-  .no-mobile {
-    display: none;
-  }
+// @media (max-width: 595px) {
+//   .no-mobile {
+//     display: none;
+//   }
 
-  .social {
-    margin-top: 0;
-  }
+//   .social {
+//     margin-top: 0;
+//   }
 
-  .footer-links {
-    padding-bottom: 30px;
-  }
-}
+//   .footer-links {
+//     padding-bottom: 30px;
+//   }
+// }
 
 * {
   border: 1px solid blue;
