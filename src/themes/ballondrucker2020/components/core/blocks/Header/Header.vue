@@ -1,5 +1,51 @@
 <template>
-  <div class="header">
+  <header id="header-global">
+    <section class="navigation-account">
+      <div id="contact-phone">
+        <!-- Component -->
+        <AddComponentHere />
+        <p>PHONE</p>
+      </div>
+      <div id="contact-mail">
+        <!-- Component -->
+        <AddComponentHere />
+        <p>MAIL</p>
+      </div>
+      <div id="account">
+        <!-- Component -->
+        <AddComponentHere />
+        <p>ACCOUNT</p>
+      </div>
+      <div id="cart">
+        <!-- Component -->
+        <AddComponentHere />
+        <p>CART</p>
+      </div>
+      <div id="language">
+        <!-- Component -->
+        <AddComponentHere />
+        <p>LANGUAGE</p>
+      </div>
+    </section>
+    <section class="navigation-catalog">
+      <nav id="menu">
+        <!-- Component -->
+        <HamburgerIcon />
+        <p>MENU</p>
+      </nav>
+      <div id="logo-site">
+        <!-- Component -->
+        <AddComponentHere />
+        <p>LOGO</p>
+      </div>
+      <div id="search">
+        <!-- Component -->
+        <AddComponentHere />
+        <p>SEARCH</p>
+      </div>
+    </section>
+  </header>
+  <!-- <div class="header">
     <header class="fixed w-100" :class="{ 'is-visible': navVisible }">
       <div class="bg-middleSaturatedChartreuse p10">
         <div class="container">
@@ -23,7 +69,7 @@
       </div>
     </header>
     <div class="header-placeholder" />
-  </div>
+  </div>-->
   <!--     
       <div class="header">
       <header
@@ -116,7 +162,7 @@ export default {
     WishlistIcon,
     PhoneIcon,
     MailIcon,
-    LanguageIcon,
+    LanguageIcon
   },
   mixins: [CurrentPage],
   data() {
@@ -180,54 +226,122 @@ export default {
 @import "~theme/css/helpers/functions/color";
 $color-icon-hover: color(secondary, $colors-background);
 
-// * {
-//   border: 1px solid blue;
+// header {
+//   height: 96px;
+//   top: -48px;
+//   z-index: 3;
+//   transition: top 0.2s ease-in-out;
+//   &.is-visible {
+//     top: 0;
+//   }
+// }
+// .icon {
+//   opacity: 0.6;
+//   &:hover,
+//   &:focus {
+//     background-color: $color-icon-hover;
+//     opacity: 1;
+//   }
+// }
+// .right-icons {
+//   //for edge
+//   float: right;
+// }
+// .header-placeholder {
+//   height: 96px;
+// }
+// .links {
+//   text-decoration: underline;
+// }
+// @media (max-width: 767px) {
+//   .row.middle-xs {
+//     margin: 0 -15px;
+
+//     &.py5 {
+//       margin: 0;
+//     }
+//   }
+//   .col-xs-2:first-of-type {
+//     padding-left: 0;
+//   }
+//   .col-xs-2:last-of-type {
+//     padding-right: 0;
+//   }
+//   a,
+//   span {
+//     font-size: 12px;
+//   }
 // }
 
-header {
-  height: 96px;
-  top: -48px;
-  z-index: 3;
-  transition: top 0.2s ease-in-out;
-  &.is-visible {
-    top: 0;
-  }
+* {
+  border: 1px solid blue;
 }
-.icon {
-  opacity: 0.6;
-  &:hover,
-  &:focus {
-    background-color: $color-icon-hover;
-    opacity: 1;
-  }
-}
-.right-icons {
-  //for edge
-  float: right;
-}
-.header-placeholder {
-  height: 96px;
-}
-.links {
-  text-decoration: underline;
-}
-@media (max-width: 767px) {
-  .row.middle-xs {
-    margin: 0 -15px;
 
-    &.py5 {
-      margin: 0;
+/* 
+Construction of the grid
+*/
+
+@import "~theme/css/vendor/flexboxgrid2";
+
+header#header-global > section {
+  @extend .row;
+  /* Increase specificity with attribute selector to promote margin of .container */
+  &[class|=navigation] {
+    @extend .container;
+    flex-wrap: nowrap;
+  }
+  
+
+  & div,
+  nav {
+    @extend .center-lg, .center-sm, .center-xs;
+    @extend .middle-lg, .middle-sm, .middle-xs;
+
+    /* Account navigation*/
+    &#contact-phone, &#contact-mail {
+      @extend .col-lg-2;
+      @extend .hidden-md, .hidden-sm, .hidden-xs;
+      @extend .start-lg;
     }
-  }
-  .col-xs-2:first-of-type {
-    padding-left: 0;
-  }
-  .col-xs-2:last-of-type {
-    padding-right: 0;
-  }
-  a,
-  span {
-    font-size: 12px;
+    &#account {
+      @extend .col-lg-offset-5, .col-lg-1;
+      @extend .col-md-offset-9, .col-md-1;
+      @extend .col-sm-offset-3, .col-sm-3;
+      @extend .col-xs-offset-6, .col-xs-2;
+    }
+    &#cart {
+      @extend .initial-order-lg, .col-lg-1;
+      @extend .col-md-1;
+      @extend .col-sm-3;
+      @extend .last-xs, .col-xs-2;
+    }
+    &#language {
+      @extend .initial-order-lg, .col-lg-1;
+      @extend .col-md-1;
+      @extend .col-sm-3;
+      @extend .first-xs, .col-xs-2;
+    }
+
+    /* Catalog navigation*/
+    &#menu {
+      @extend .col-lg-1;
+      @extend .col-md-1;
+      @extend .col-sm-2;
+      @extend .col-xs-2;
+      @extend .start-lg;
+    }
+    &#logo-site {
+      @extend .col-lg-offset-2, .col-lg-6;
+      @extend .col-md-10;
+      @extend .col-sm-8;
+      @extend .col-xs-8;
+    }
+    &#search {
+      @extend .col-lg-offset-2, .col-lg-1;
+      @extend .col-md-1;
+      @extend .col-sm-2;
+      @extend .col-xs-2;
+    }
   }
 }
 </style>
