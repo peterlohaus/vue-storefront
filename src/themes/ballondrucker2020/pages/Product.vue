@@ -1,5 +1,62 @@
 <template>
-  <div id="product" itemscope itemtype="http://schema.org/Product">
+  <main id="main-product">
+    <section id="breadcrumb">
+      <div>
+        <!-- Component -->
+        <AddComponentHere />
+        <p>COMPONENT_BREADCRUMB</p>
+      </div>
+    </section>
+    <section id="product">
+        <div id="gallery">
+          <!-- Component -->
+          <AddComponentHere />
+          <p>COMPONENT_GALLERY</p>
+        </div>
+        <div id="order">
+          <!-- Component -->
+          <AddComponentHere />
+          <p>COMPONENT_ORDER</p>
+        </div>
+    </section>
+    <section id="description">
+      <div>
+        <!-- Component -->
+        <AddComponentHere />
+        <p>COMPONENT_DESCRIPTION</p>
+      </div>
+    </section>
+    <section id="data">
+      <div>
+        <!-- Component -->
+        <AddComponentHere />
+        <p>COMPONENT_DATA</p>
+      </div>
+    </section>
+    <section id="reviews">
+      <div>
+        <!-- Component -->
+        <AddComponentHere />
+        <p>COMPONENT_REVIEWS</p>
+      </div>
+    </section>
+    <section id="related-products">
+      <div>
+        <!-- Component -->
+        <AddComponentHere />
+        <p>COMPONENT_RELATEDPRODUCTS</p>
+      </div>
+    </section>
+    <section id="blog">
+      <div>
+        <!-- Component -->
+        <AddComponentHere />
+        <p>COMPONENT_BLOG</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- <div id="product" itemscope itemtype="http://schema.org/Product">
     <section class="bg-cl-secondary px20 product-top-section">
       <div class="container">
         <section class="row m0 between-xs">
@@ -196,47 +253,56 @@
       <related-products type="related" />
     </lazy-hydrate>
     <SizeGuide />
-  </div>
+  </div>-->
 </template>
 
 <script>
-import i18n from '@vue-storefront/i18n'
-import Product from '@vue-storefront/core/pages/Product'
-import VueOfflineMixin from 'vue-offline/mixin'
-import config from 'config'
-import RelatedProducts from 'theme/components/core/blocks/Product/Related.vue'
-import Reviews from 'theme/components/core/blocks/Reviews/Reviews.vue'
-import AddToCart from 'theme/components/core/AddToCart.vue'
-import GenericSelector from 'theme/components/core/GenericSelector'
-import ColorSelector from 'theme/components/core/ColorSelector.vue'
-import SizeSelector from 'theme/components/core/SizeSelector.vue'
-import Breadcrumbs from 'theme/components/core/Breadcrumbs.vue'
-import ProductAttribute from 'theme/components/core/ProductAttribute.vue'
-import ProductQuantity from 'theme/components/core/ProductQuantity.vue'
-import ProductLinks from 'theme/components/core/ProductLinks.vue'
-import ProductCustomOptions from 'theme/components/core/ProductCustomOptions.vue'
-import ProductBundleOptions from 'theme/components/core/ProductBundleOptions.vue'
-import ProductGallery from 'theme/components/core/ProductGallery'
-import Spinner from 'theme/components/core/Spinner'
-import PromotedOffers from 'theme/components/theme/blocks/PromotedOffers/PromotedOffers'
-import focusClean from 'theme/components/theme/directives/focusClean'
-import WebShare from 'theme/components/theme/WebShare'
-import BaseInputNumber from 'theme/components/core/blocks/Form/BaseInputNumber'
-import SizeGuide from 'theme/components/core/blocks/Product/SizeGuide'
-import AddToWishlist from 'theme/components/core/blocks/Wishlist/AddToWishlist'
-import AddToCompare from 'theme/components/core/blocks/Compare/AddToCompare'
-import { mapGetters } from 'vuex'
-import LazyHydrate from 'vue-lazy-hydration'
-import { ProductOption } from '@vue-storefront/core/modules/catalog/components/ProductOption.ts'
-import { getAvailableFiltersByProduct, getSelectedFiltersByProduct } from '@vue-storefront/core/modules/catalog/helpers/filters'
-import { isOptionAvailableAsync } from '@vue-storefront/core/modules/catalog/helpers/index'
-import { localizedRoute, currentStoreView } from '@vue-storefront/core/lib/multistore'
-import { htmlDecode } from '@vue-storefront/core/filters'
-import { ReviewModule } from '@vue-storefront/core/modules/review'
-import { RecentlyViewedModule } from '@vue-storefront/core/modules/recently-viewed'
-import { registerModule, isModuleRegistered } from '@vue-storefront/core/lib/modules'
-import { onlineHelper, isServer } from '@vue-storefront/core/helpers'
-import { catalogHooksExecutors } from '@vue-storefront/core/modules/catalog-next/hooks'
+import i18n from "@vue-storefront/i18n";
+import Product from "@vue-storefront/core/pages/Product";
+import VueOfflineMixin from "vue-offline/mixin";
+import config from "config";
+import RelatedProducts from "theme/components/core/blocks/Product/Related.vue";
+import Reviews from "theme/components/core/blocks/Reviews/Reviews.vue";
+import AddToCart from "theme/components/core/AddToCart.vue";
+import GenericSelector from "theme/components/core/GenericSelector";
+import ColorSelector from "theme/components/core/ColorSelector.vue";
+import SizeSelector from "theme/components/core/SizeSelector.vue";
+import Breadcrumbs from "theme/components/core/Breadcrumbs.vue";
+import ProductAttribute from "theme/components/core/ProductAttribute.vue";
+import ProductQuantity from "theme/components/core/ProductQuantity.vue";
+import ProductLinks from "theme/components/core/ProductLinks.vue";
+import ProductCustomOptions from "theme/components/core/ProductCustomOptions.vue";
+import ProductBundleOptions from "theme/components/core/ProductBundleOptions.vue";
+import ProductGallery from "theme/components/core/ProductGallery";
+import Spinner from "theme/components/core/Spinner";
+import PromotedOffers from "theme/components/theme/blocks/PromotedOffers/PromotedOffers";
+import focusClean from "theme/components/theme/directives/focusClean";
+import WebShare from "theme/components/theme/WebShare";
+import BaseInputNumber from "theme/components/core/blocks/Form/BaseInputNumber";
+import SizeGuide from "theme/components/core/blocks/Product/SizeGuide";
+import AddToWishlist from "theme/components/core/blocks/Wishlist/AddToWishlist";
+import AddToCompare from "theme/components/core/blocks/Compare/AddToCompare";
+import { mapGetters } from "vuex";
+import LazyHydrate from "vue-lazy-hydration";
+import { ProductOption } from "@vue-storefront/core/modules/catalog/components/ProductOption.ts";
+import {
+  getAvailableFiltersByProduct,
+  getSelectedFiltersByProduct
+} from "@vue-storefront/core/modules/catalog/helpers/filters";
+import { isOptionAvailableAsync } from "@vue-storefront/core/modules/catalog/helpers/index";
+import {
+  localizedRoute,
+  currentStoreView
+} from "@vue-storefront/core/lib/multistore";
+import { htmlDecode } from "@vue-storefront/core/filters";
+import { ReviewModule } from "@vue-storefront/core/modules/review";
+import { RecentlyViewedModule } from "@vue-storefront/core/modules/recently-viewed";
+import {
+  registerModule,
+  isModuleRegistered
+} from "@vue-storefront/core/lib/modules";
+import { onlineHelper, isServer } from "@vue-storefront/core/helpers";
+import { catalogHooksExecutors } from "@vue-storefront/core/modules/catalog-next/hooks";
 
 export default {
   components: {
@@ -262,352 +328,454 @@ export default {
   },
   mixins: [ProductOption],
   directives: { focusClean },
-  beforeCreate () {
-    registerModule(ReviewModule)
-    registerModule(RecentlyViewedModule)
+  beforeCreate() {
+    registerModule(ReviewModule);
+    registerModule(RecentlyViewedModule);
   },
-  data () {
+  data() {
     return {
       detailsOpen: false,
       maxQuantity: 0,
       quantityError: false,
       isStockInfoLoading: false,
       hasAttributesLoaded: false
-    }
+    };
   },
   computed: {
     ...mapGetters({
-      getCurrentCategory: 'category-next/getCurrentCategory',
-      getCurrentProduct: 'product/getCurrentProduct',
-      getProductGallery: 'product/getProductGallery',
-      getCurrentProductConfiguration: 'product/getCurrentProductConfiguration',
-      getOriginalProduct: 'product/getOriginalProduct',
-      attributesByCode: 'attribute/attributeListByCode'
+      getCurrentCategory: "category-next/getCurrentCategory",
+      getCurrentProduct: "product/getCurrentProduct",
+      getProductGallery: "product/getProductGallery",
+      getCurrentProductConfiguration: "product/getCurrentProductConfiguration",
+      getOriginalProduct: "product/getOriginalProduct",
+      attributesByCode: "attribute/attributeListByCode"
     }),
-    getOptionLabel () {
-      return (option) => {
-        const configName = option.attribute_code ? option.attribute_code : option.label.toLowerCase()
-        return this.getCurrentProductConfiguration[configName] ? this.getCurrentProductConfiguration[configName].label : configName
-      }
+    getOptionLabel() {
+      return option => {
+        const configName = option.attribute_code
+          ? option.attribute_code
+          : option.label.toLowerCase();
+        return this.getCurrentProductConfiguration[configName]
+          ? this.getCurrentProductConfiguration[configName].label
+          : configName;
+      };
     },
-    isOnline (value) {
-      return onlineHelper.isOnline
+    isOnline(value) {
+      return onlineHelper.isOnline;
     },
-    structuredData () {
+    structuredData() {
       return {
-        availability: this.getCurrentProduct.stock && this.getCurrentProduct.stock.is_in_stock ? 'InStock' : 'OutOfStock'
-      }
+        availability:
+          this.getCurrentProduct.stock &&
+          this.getCurrentProduct.stock.is_in_stock
+            ? "InStock"
+            : "OutOfStock"
+      };
     },
-    getProductOptions () {
+    getProductOptions() {
       if (
         this.getCurrentProduct.errors &&
         Object.keys(this.getCurrentProduct.errors).length &&
         Object.keys(this.getCurrentProductConfiguration).length
       ) {
-        return []
+        return [];
       }
-      return this.getCurrentProduct.configurable_options
+      return this.getCurrentProduct.configurable_options;
     },
-    getOfflineImage () {
+    getOfflineImage() {
       return {
-        src: this.getThumbnail(this.getCurrentProduct.image, config.products.thumbnails.width, config.products.thumbnails.height),
-        error: this.getThumbnail(this.getCurrentProduct.image, config.products.thumbnails.width, config.products.thumbnails.height),
-        loading: this.getThumbnail(this.getCurrentProduct.image, config.products.thumbnails.width, config.products.thumbnails.height)
-      }
+        src: this.getThumbnail(
+          this.getCurrentProduct.image,
+          config.products.thumbnails.width,
+          config.products.thumbnails.height
+        ),
+        error: this.getThumbnail(
+          this.getCurrentProduct.image,
+          config.products.thumbnails.width,
+          config.products.thumbnails.height
+        ),
+        loading: this.getThumbnail(
+          this.getCurrentProduct.image,
+          config.products.thumbnails.width,
+          config.products.thumbnails.height
+        )
+      };
     },
-    getCustomAttributes () {
-      return Object.values(this.attributesByCode).filter(a => {
-        return a.is_visible && a.is_user_defined && (parseInt(a.is_visible_on_front) || a.is_visible_on_front === true) && this.getCurrentProduct[a.attribute_code]
-      }).sort((a, b) => { return a.attribute_id > b.attribute_id })
+    getCustomAttributes() {
+      return Object.values(this.attributesByCode)
+        .filter(a => {
+          return (
+            a.is_visible &&
+            a.is_user_defined &&
+            (parseInt(a.is_visible_on_front) ||
+              a.is_visible_on_front === true) &&
+            this.getCurrentProduct[a.attribute_code]
+          );
+        })
+        .sort((a, b) => {
+          return a.attribute_id > b.attribute_id;
+        });
     },
-    getAvailableFilters () {
-      return getAvailableFiltersByProduct(this.getCurrentProduct)
+    getAvailableFilters() {
+      return getAvailableFiltersByProduct(this.getCurrentProduct);
     },
-    getSelectedFilters () {
-      return getSelectedFiltersByProduct(this.getCurrentProduct, this.getCurrentProductConfiguration)
+    getSelectedFilters() {
+      return getSelectedFiltersByProduct(
+        this.getCurrentProduct,
+        this.getCurrentProductConfiguration
+      );
     },
-    isSimpleOrConfigurable () {
-      return ['simple', 'configurable'].includes(this.getCurrentProduct.type_id)
+    isSimpleOrConfigurable() {
+      return ["simple", "configurable"].includes(
+        this.getCurrentProduct.type_id
+      );
     },
-    isAddToCartDisabled () {
-      return this.quantityError ||
+    isAddToCartDisabled() {
+      return (
+        this.quantityError ||
         this.isStockInfoLoading ||
         (this.isOnline && !this.maxQuantity && this.isSimpleOrConfigurable)
+      );
     }
   },
-  async mounted () {
-    await this.$store.dispatch('recently-viewed/addItem', this.getCurrentProduct)
+  async mounted() {
+    await this.$store.dispatch(
+      "recently-viewed/addItem",
+      this.getCurrentProduct
+    );
   },
-  async asyncData ({ store, route }) {
-    const product = await store.dispatch('product/loadProduct', { parentSku: route.params.parentSku, childSku: route && route.params && route.params.childSku ? route.params.childSku : null })
-    const loadBreadcrumbsPromise = store.dispatch('product/loadProductBreadcrumbs', { product })
-    if (isServer) await loadBreadcrumbsPromise
-    catalogHooksExecutors.productPageVisited(product)
+  async asyncData({ store, route }) {
+    const product = await store.dispatch("product/loadProduct", {
+      parentSku: route.params.parentSku,
+      childSku:
+        route && route.params && route.params.childSku
+          ? route.params.childSku
+          : null
+    });
+    const loadBreadcrumbsPromise = store.dispatch(
+      "product/loadProductBreadcrumbs",
+      { product }
+    );
+    if (isServer) await loadBreadcrumbsPromise;
+    catalogHooksExecutors.productPageVisited(product);
   },
-  beforeRouteEnter (to, from, next) {
+  beforeRouteEnter(to, from, next) {
     if (isServer) {
-      next()
+      next();
     } else {
-      next((vm) => {
-        vm.getQuantity()
-      })
+      next(vm => {
+        vm.getQuantity();
+      });
     }
   },
   watch: {
     isOnline: {
-      handler (isOnline) {
+      handler(isOnline) {
         if (isOnline) {
-          this.getQuantity()
+          this.getQuantity();
         }
       }
     }
   },
   methods: {
-    showDetails (event) {
-      this.detailsOpen = true
-      event.target.classList.add('hidden')
+    showDetails(event) {
+      this.detailsOpen = true;
+      event.target.classList.add("hidden");
     },
-    notifyOutStock () {
-      this.$store.dispatch('notification/spawnNotification', {
-        type: 'error',
+    notifyOutStock() {
+      this.$store.dispatch("notification/spawnNotification", {
+        type: "error",
         message: this.$t(
-          'The product is out of stock and cannot be added to the cart!'
+          "The product is out of stock and cannot be added to the cart!"
         ),
-        action1: { label: this.$t('OK') }
-      })
+        action1: { label: this.$t("OK") }
+      });
     },
-    notifyWrongAttributes () {
-      this.$store.dispatch('notification/spawnNotification', {
-        type: 'warning',
+    notifyWrongAttributes() {
+      this.$store.dispatch("notification/spawnNotification", {
+        type: "warning",
         message: this.$t(
-          'No such configuration for the product. Please do choose another combination of attributes.'
+          "No such configuration for the product. Please do choose another combination of attributes."
         ),
-        action1: { label: this.$t('OK') }
-      })
+        action1: { label: this.$t("OK") }
+      });
     },
-    changeFilter (variant) {
+    changeFilter(variant) {
       this.$bus.$emit(
-        'filter-changed-product',
+        "filter-changed-product",
         Object.assign({ attribute_code: variant.type }, variant)
-      )
-      this.getQuantity()
+      );
+      this.getQuantity();
     },
-    openSizeGuide () {
-      this.$bus.$emit('modal-show', 'modal-sizeguide')
+    openSizeGuide() {
+      this.$bus.$emit("modal-show", "modal-sizeguide");
     },
-    isOptionAvailable (option) { // check if the option is available
-      const currentConfig = Object.assign({}, this.getCurrentProductConfiguration)
-      currentConfig[option.type] = option
-      return isOptionAvailableAsync(this.$store, { product: this.getCurrentProduct, configuration: currentConfig })
+    isOptionAvailable(option) {
+      // check if the option is available
+      const currentConfig = Object.assign(
+        {},
+        this.getCurrentProductConfiguration
+      );
+      currentConfig[option.type] = option;
+      return isOptionAvailableAsync(this.$store, {
+        product: this.getCurrentProduct,
+        configuration: currentConfig
+      });
     },
-    async getQuantity () {
-      if (this.isStockInfoLoading) return // stock info is already loading
-      this.isStockInfoLoading = true
+    async getQuantity() {
+      if (this.isStockInfoLoading) return; // stock info is already loading
+      this.isStockInfoLoading = true;
       try {
-        const res = await this.$store.dispatch('stock/check', {
+        const res = await this.$store.dispatch("stock/check", {
           product: this.getCurrentProduct,
           qty: this.getCurrentProduct.qty
-        })
-        this.maxQuantity = res.qty
+        });
+        this.maxQuantity = res.qty;
       } finally {
-        this.isStockInfoLoading = false
+        this.isStockInfoLoading = false;
       }
     },
-    handleQuantityError (error) {
-      this.quantityError = error
+    handleQuantityError(error) {
+      this.quantityError = error;
     }
   },
-  metaInfo () {
-    const storeView = currentStoreView()
+  metaInfo() {
+    const storeView = currentStoreView();
     return {
       link: [
-        { rel: 'amphtml',
-          href: this.$router.resolve(localizedRoute({
-            name: this.getCurrentProduct.type_id + '-product-amp',
-            params: {
-              parentSku: this.getCurrentProduct.parentSku ? this.getCurrentProduct.parentSku : this.getCurrentProduct.sku,
-              slug: this.getCurrentProduct.slug,
-              childSku: this.getCurrentProduct.sku
-            }
-          }, storeView.storeCode)).href
+        {
+          rel: "amphtml",
+          href: this.$router.resolve(
+            localizedRoute(
+              {
+                name: this.getCurrentProduct.type_id + "-product-amp",
+                params: {
+                  parentSku: this.getCurrentProduct.parentSku
+                    ? this.getCurrentProduct.parentSku
+                    : this.getCurrentProduct.sku,
+                  slug: this.getCurrentProduct.slug,
+                  childSku: this.getCurrentProduct.sku
+                }
+              },
+              storeView.storeCode
+            )
+          ).href
         }
       ],
-      title: htmlDecode(this.getCurrentProduct.meta_title || this.getCurrentProduct.name),
-      meta: this.getCurrentProduct.meta_description ? [{ vmid: 'description', name: 'description', content: htmlDecode(this.getCurrentProduct.meta_description) }] : []
-    }
+      title: htmlDecode(
+        this.getCurrentProduct.meta_title || this.getCurrentProduct.name
+      ),
+      meta: this.getCurrentProduct.meta_description
+        ? [
+            {
+              vmid: "description",
+              name: "description",
+              content: htmlDecode(this.getCurrentProduct.meta_description)
+            }
+          ]
+        : []
+    };
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '~theme/css/variables/colors';
-@import '~theme/css/helpers/functions/color';
+@import "~theme/css/variables/colors";
+@import "~theme/css/helpers/functions/color";
 $color-primary: color(primary);
 $color-tertiary: color(tertiary);
 $color-secondary: color(secondary);
 $color-white: color(white);
 $bg-secondary: color(secondary, $colors-background);
 
-.product {
-  &__add-to-compare {
-    display: none;
-    @media (min-width: 767px) {
-      display: block;
+// .product {
+//   &__add-to-compare {
+//     display: none;
+//     @media (min-width: 767px) {
+//       display: block;
+//     }
+//   }
+// }
+
+// .breadcrumbs {
+//   @media (max-width: 767px) {
+//     margin: 15px 0;
+//     padding: 15px 0 0 15px;
+//   }
+// }
+
+// .error {
+//   color: red;
+//   font-weight: bold;
+//   padding-bottom: 15px;
+// }
+// .data {
+//   @media (max-width: 767px) {
+//     border-bottom: 1px solid $bg-secondary;
+//   }
+// }
+
+// .image {
+//   @media (max-width: 1023px) {
+//     margin-bottom: 20px;
+//   }
+// }
+
+// .product-name {
+//   @media (max-width: 767px) {
+//     font-size: 36px;
+//   }
+// }
+
+// .price {
+//   @media (max-width: 767px) {
+//     color: $color-primary;
+//   }
+// }
+
+// .variants-label {
+//   @media (max-width: 767px) {
+//     font-size: 14px;
+//   }
+// }
+
+// .variants-wrapper {
+//   @media (max-width: 767px) {
+//     padding-bottom: 30px;
+//   }
+
+//   .sizes {
+//     @media (max-width: 767px) {
+//       width: 100%;
+//     }
+//   }
+
+//   .size-guide {
+//     height: 40px;
+//     @media (max-width: 767px) {
+//       width: 100%;
+//       margin-left: 0;
+//     }
+//   }
+// }
+
+// .product-top-section {
+//   @media (max-width: 767px) {
+//     padding: 0;
+//     background-color: $color-white;
+//   }
+// }
+
+// .add-to-buttons {
+//   @media (max-width: 767px) {
+//     padding-top: 30px;
+//     margin-bottom: 40px;
+//   }
+// }
+
+// .details {
+//   @media (max-width: 767px) {
+//     padding: 50px 15px 15px;
+//   }
+// }
+
+// .details-title {
+//   padding: 0 8px;
+
+//   @media (max-width: 767px) {
+//     font-size: 18px;
+//     margin: 0;
+//   }
+// }
+
+// .details-wrapper {
+//   @media (max-width: 767px) {
+//     position: relative;
+//     max-height: 140px;
+//     overflow: hidden;
+//     transition: all 0.3s ease;
+//     font-size: 14px;
+//   }
+
+//   &--open {
+//     max-height: none;
+//   }
+// }
+
+// .details-overlay {
+//   @media (max-width: 767px) {
+//     position: absolute;
+//     height: 75%;
+//     bottom: 0;
+//     left: 0;
+//     width: 100%;
+//     margin: 0;
+//     cursor: pointer;
+//     background: linear-gradient(rgba($color-white, 0), rgba($color-white, 1));
+//     &.hidden {
+//       display: none;
+//     }
+//   }
+// }
+
+// .price-original {
+//   text-decoration: line-through;
+// }
+
+// .action {
+//   &:hover {
+//     color: $color-tertiary;
+//   }
+// }
+
+// .attributes {
+//   list-style-type: none;
+// }
+
+// .fade-enter-active,
+// .fade-leave-active {
+//   transition: opacity 0.3s;
+// }
+
+// .fade-enter,
+// .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+//   opacity: 0;
+// }
+
+// .product-image {
+//   mix-blend-mode: multiply;
+//   width: 460px;
+// }
+
+// .web-share {
+//   float: right;
+// }
+
+* {
+  border: 1px solid blue;
+}
+
+/* 
+Construction of the grid
+*/
+
+@import "~theme/css/vendor/flexboxgrid2";
+
+main#main-product > section {
+  @extend .row ,.container;
+  margin-left: auto;
+  margin-right: auto;
+
+  & div {
+    @extend .center-lg, .center-sm, .center-xs;
+    @extend .middle-lg, .middle-sm, .middle-xs;
+
+    @extend .col-lg-12, .col-md-12, .col-sm-12, .col-xs-12;
+
+    &#gallery, &#order {
+      @extend .col-lg-6;
     }
   }
 }
 
-.breadcrumbs {
-  @media (max-width: 767px) {
-    margin: 15px 0;
-    padding: 15px 0 0 15px;
-  }
-}
-
-.error {
-  color: red;
-  font-weight: bold;
-  padding-bottom: 15px;
-}
-.data {
-  @media (max-width: 767px) {
-    border-bottom: 1px solid $bg-secondary;
-  }
-}
-
-.image {
-  @media (max-width: 1023px) {
-    margin-bottom: 20px;
-  }
-}
-
-.product-name {
-  @media (max-width: 767px) {
-    font-size: 36px;
-  }
-}
-
-.price {
-  @media (max-width: 767px) {
-    color: $color-primary;
-  }
-}
-
-.variants-label {
-  @media (max-width: 767px) {
-    font-size: 14px;
-  }
-}
-
-.variants-wrapper {
-  @media (max-width: 767px) {
-    padding-bottom: 30px;
-  }
-
-  .sizes {
-    @media (max-width: 767px) {
-      width: 100%;
-    }
-  }
-
-  .size-guide {
-    height: 40px;
-    @media (max-width: 767px) {
-      width: 100%;
-      margin-left: 0;
-    }
-  }
-}
-
-.product-top-section {
-  @media (max-width: 767px) {
-    padding: 0;
-    background-color: $color-white;
-  }
-}
-
-.add-to-buttons {
-  @media (max-width: 767px) {
-    padding-top: 30px;
-    margin-bottom: 40px;
-  }
-}
-
-.details {
-  @media (max-width: 767px) {
-    padding: 50px 15px 15px;
-  }
-}
-
-.details-title {
-  padding: 0 8px;
-
-  @media (max-width: 767px) {
-    font-size: 18px;
-    margin: 0;
-  }
-}
-
-.details-wrapper {
-  @media (max-width: 767px) {
-    position: relative;
-    max-height: 140px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    font-size: 14px;
-  }
-
-  &--open {
-    max-height: none;
-  }
-}
-
-.details-overlay {
-  @media (max-width: 767px) {
-    position: absolute;
-    height: 75%;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    margin: 0;
-    cursor: pointer;
-    background: linear-gradient(rgba($color-white, 0), rgba($color-white, 1));
-    &.hidden {
-      display: none;
-    }
-  }
-}
-
-.price-original {
-  text-decoration: line-through;
-}
-
-.action {
-  &:hover {
-    color: $color-tertiary;
-  }
-}
-
-.attributes {
-  list-style-type: none;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s;
-}
-
-.fade-enter,
-.fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
-}
-
-.product-image {
-  mix-blend-mode: multiply;
-  width: 460px;
-}
-
-.web-share {
-  float: right;
-}
 </style>
