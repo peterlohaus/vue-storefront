@@ -1,38 +1,38 @@
 <template>
-  <main>
+  <main id="main-home">
     <section class="slider-top">
       <div>
         <!-- Component -->
         <AddComponentHere />
-        <p>COMPONENT_PLACEHOLDER</p>
+        <p>COMPONENT_SLIDER</p>
       </div>
     </section>
     <section class="top-categories">
       <div>
         <!-- Component -->
         <AddComponentHere />
-        <p>COMPONENT_PLACEHOLDER</p>
+        <p>COMPONENT_TOPCATEGORIES</p>
       </div>
     </section>
     <section class="favorite-categories">
       <div>
         <!-- Component -->
         <AddComponentHere />
-        <p>COMPONENT_PLACEHOLDER</p>
+        <p>COMPONENT_FAVCATEGORIES</p>
       </div>
     </section>
     <section class="slider-bottom">
       <div>
         <!-- Component -->
         <AddComponentHere />
-        <p>COMPONENT_PLACEHOLDER</p>
+        <p>COMPONENT_SLIDER</p>
       </div>
     </section>
     <section class="blog">
       <div>
         <!-- Component -->
         <AddComponentHere />
-        <p>COMPONENT_PLACEHOLDER</p>
+        <p>COMPONENT_BLOG</p>
       </div>
     </section>
   </main>
@@ -193,7 +193,7 @@ Construction of the grid
 
 @import "~theme/css/vendor/flexboxgrid2";
 
-main section {
+main#main-home > section {
   @extend .row;
   &:not(.slider-top):not(.slider-bottom) {
     @extend .container;
