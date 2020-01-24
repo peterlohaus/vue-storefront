@@ -1,41 +1,41 @@
 <template>
-  <footer>
+  <footer id="footer-global">
     <section class="newsletter">
       <div>
         <!-- Component -->
-        <Newsletter />
-        <p>COMPONENT_PLACEHOLDER</p>
+        <NewsletterSubscription />
+        <p>COMPONENT_NEWSLETTER</p>
       </div>
     </section>
     <section class="service">
       <div>
         <!-- Component -->
         <PaymentInformation />
-        <p>COMPONENT_PLACEHOLDER</p>
+        <p>COMPONENT_PAYMENT</p>
       </div>
       <div>
         <!-- Component -->
         <ContactInformation />
-        <p>COMPONENT_PLACEHOLDER</p>
+        <p>COMPONENT_CONTACT</p>
       </div>
       <div>
         <!-- Component -->
         <CertificateInformation />
-        <p>COMPONENT_PLACEHOLDER</p>
+        <p>COMPONENT_CERTIFICATE</p>
       </div>
     </section>
     <section class="social">
       <div>
         <!-- Component -->
         <SocialPages />
-        <p>COMPONENT_PLACEHOLDER</p>
+        <p>COMPONENT_SOCIAL</p>
       </div>
     </section>
     <section class="legal">
       <div>
         <!-- Component -->
         <LegalPages />
-        <p>COMPONENT_PLACEHOLDER</p>
+        <p>COMPONENT_LEGAL</p>
       </div>
     </section>
   </footer>
@@ -339,7 +339,7 @@ Construction of the grid
 
 @import "~theme/css/vendor/flexboxgrid2";
 
-footer section {
+footer#footer-global > section {
   @extend .row;
   &:not(.newsletter) {
     @extend .container;
