@@ -1,34 +1,34 @@
 <template>
   <main id="main-home">
-    <section class="slider-top">
+    <section id="slider-top">
       <div>
         <!-- Component -->
         <AddComponentHere />
         <p>COMPONENT_SLIDER</p>
       </div>
     </section>
-    <section class="top-categories">
+    <section id="top-categories">
       <div>
         <!-- Component -->
         <AddComponentHere />
         <p>COMPONENT_TOPCATEGORIES</p>
       </div>
     </section>
-    <section class="favorite-categories">
+    <section id="favorite-categories">
       <div>
         <!-- Component -->
         <AddComponentHere />
         <p>COMPONENT_FAVCATEGORIES</p>
       </div>
     </section>
-    <section class="slider-bottom">
+    <section id="slider-bottom">
       <div>
         <!-- Component -->
         <AddComponentHere />
         <p>COMPONENT_SLIDER</p>
       </div>
     </section>
-    <section class="blog">
+    <section id="blog">
       <div>
         <!-- Component -->
         <AddComponentHere />
@@ -195,14 +195,15 @@ Construction of the grid
 
 main#main-home > section {
   @extend .row;
-  &:not(.slider-top):not(.slider-bottom) {
+  &:not(#slider-top):not(#slider-bottom) {
     @extend .container;
   }
 
   & div {
-    @extend .col-lg-12, .col-sm-12, .col-xs-12;
     @extend .center-lg, .center-sm, .center-xs;
     @extend .middle-lg, .middle-sm, .middle-xs;
+
+    @extend .col-lg-12, .col-sm-12, .col-xs-12;
   }
 }
 </style>
