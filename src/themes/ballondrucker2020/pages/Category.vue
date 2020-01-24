@@ -1,5 +1,21 @@
 <template>
-  <div id="category">
+  <main id="main-category">
+    <section id="breadcrumb">
+      <div>
+        <!-- Component -->
+        <AddComponentHere />
+        <p>COMPONENT_BREADCRUMB</p>
+      </div>
+    </section>
+    <section id="category">
+      <div>
+        <!-- Component -->
+        <ProductListing />
+        <p>COMPONENT_CATEGORY</p>
+      </div>
+    </section>
+  </main>
+  <!-- <div id="category">
     <header class="bg-cl-secondary py35 pl20">
       <div class="container">
         <breadcrumbs />
@@ -74,43 +90,62 @@
         </div>
       </div>
     </div>
-  </div>
+  </div>-->
 </template>
 
 <script>
-import LazyHydrate from 'vue-lazy-hydration'
-import Sidebar from '../components/core/blocks/Category/Sidebar.vue'
-import ProductListing from '../components/core/ProductListing.vue'
-import Breadcrumbs from '../components/core/Breadcrumbs.vue'
-import SortBy from '../components/core/SortBy.vue'
-import { isServer } from '@vue-storefront/core/helpers'
-import { getSearchOptionsFromRouteParams } from '@vue-storefront/core/modules/catalog-next/helpers/categoryHelpers'
-import config from 'config'
-import Columns from '../components/core/Columns.vue'
-import ButtonFull from 'theme/components/theme/ButtonFull.vue'
-import { mapGetters } from 'vuex'
-import onBottomScroll from '@vue-storefront/core/mixins/onBottomScroll'
-import rootStore from '@vue-storefront/core/store';
-import { catalogHooksExecutors } from '@vue-storefront/core/modules/catalog-next/hooks'
-import { localizedRoute, currentStoreView } from '@vue-storefront/core/lib/multistore'
-import { htmlDecode } from '@vue-storefront/core/filters'
+import LazyHydrate from "vue-lazy-hydration";
+import Sidebar from "../components/core/blocks/Category/Sidebar.vue";
+import ProductListing from "../components/core/ProductListing.vue";
+import Breadcrumbs from "../components/core/Breadcrumbs.vue";
+import SortBy from "../components/core/SortBy.vue";
+import { isServer } from "@vue-storefront/core/helpers";
+import { getSearchOptionsFromRouteParams } from "@vue-storefront/core/modules/catalog-next/helpers/categoryHelpers";
+import config from "config";
+import Columns from "../components/core/Columns.vue";
+import ButtonFull from "theme/components/theme/ButtonFull.vue";
+import { mapGetters } from "vuex";
+import onBottomScroll from "@vue-storefront/core/mixins/onBottomScroll";
+import rootStore from "@vue-storefront/core/store";
+import { catalogHooksExecutors } from "@vue-storefront/core/modules/catalog-next/hooks";
+import {
+  localizedRoute,
+  currentStoreView
+} from "@vue-storefront/core/lib/multistore";
+import { htmlDecode } from "@vue-storefront/core/filters";
 
-const THEME_PAGE_SIZE = 50
+const THEME_PAGE_SIZE = 50;
 
 const composeInitialPageState = async (store, route, forceLoad = false) => {
   try {
-    const filters = getSearchOptionsFromRouteParams(route.params)
-    const cachedCategory = store.getters['category-next/getCategoryFrom'](route.path)
-    const currentCategory = cachedCategory && !forceLoad ? cachedCategory : await store.dispatch('category-next/loadCategory', { filters })
-    await store.dispatch('category-next/loadCategoryProducts', {route, category: currentCategory, pageSize: THEME_PAGE_SIZE})
-    const breadCrumbsLoader = store.dispatch('category-next/loadCategoryBreadcrumbs', { category: currentCategory, currentRouteName: currentCategory.name, omitCurrent: true })
+    const filters = getSearchOptionsFromRouteParams(route.params);
+    const cachedCategory = store.getters["category-next/getCategoryFrom"](
+      route.path
+    );
+    const currentCategory =
+      cachedCategory && !forceLoad
+        ? cachedCategory
+        : await store.dispatch("category-next/loadCategory", { filters });
+    await store.dispatch("category-next/loadCategoryProducts", {
+      route,
+      category: currentCategory,
+      pageSize: THEME_PAGE_SIZE
+    });
+    const breadCrumbsLoader = store.dispatch(
+      "category-next/loadCategoryBreadcrumbs",
+      {
+        category: currentCategory,
+        currentRouteName: currentCategory.name,
+        omitCurrent: true
+      }
+    );
 
-    if (isServer) await breadCrumbsLoader
-    catalogHooksExecutors.categoryPageVisited(currentCategory)
+    if (isServer) await breadCrumbsLoader;
+    catalogHooksExecutors.categoryPageVisited(currentCategory);
   } catch (e) {
-    console.error('Problem with setting Category initial data!', e)
+    console.error("Problem with setting Category initial data!", e);
   }
-}
+};
 
 export default {
   components: {
@@ -123,203 +158,248 @@ export default {
     Columns
   },
   mixins: [onBottomScroll],
-  data () {
+  data() {
     return {
       mobileFilters: false,
       defaultColumn: 3,
       loadingProducts: false,
       loading: true
-    }
+    };
   },
   computed: {
     ...mapGetters({
-      getCurrentSearchQuery: 'category-next/getCurrentSearchQuery',
-      getCategoryProducts: 'category-next/getCategoryProducts',
-      getCurrentCategory: 'category-next/getCurrentCategory',
-      getCategoryProductsTotal: 'category-next/getCategoryProductsTotal',
-      getAvailableFilters: 'category-next/getAvailableFilters'
+      getCurrentSearchQuery: "category-next/getCurrentSearchQuery",
+      getCategoryProducts: "category-next/getCategoryProducts",
+      getCurrentCategory: "category-next/getCurrentCategory",
+      getCategoryProductsTotal: "category-next/getCategoryProductsTotal",
+      getAvailableFilters: "category-next/getAvailableFilters"
     }),
-    isLazyHydrateEnabled () {
-      return config.ssr.lazyHydrateFor.includes('category-next.products')
+    isLazyHydrateEnabled() {
+      return config.ssr.lazyHydrateFor.includes("category-next.products");
     },
-    isCategoryEmpty () {
-      return this.getCategoryProductsTotal === 0
+    isCategoryEmpty() {
+      return this.getCategoryProductsTotal === 0;
     }
   },
-  async asyncData ({ store, route }) { // this is for SSR purposes to prefetch data - and it's always executed before parent component methods
-    await composeInitialPageState(store, route)
+  async asyncData({ store, route }) {
+    // this is for SSR purposes to prefetch data - and it's always executed before parent component methods
+    await composeInitialPageState(store, route);
   },
-  async beforeRouteEnter (to, from, next) {
-    if (isServer) next() // SSR no need to invoke SW caching here
-    else if (!from.name) { // SSR but client side invocation, we need to cache products and invoke requests from asyncData for offline support
+  async beforeRouteEnter(to, from, next) {
+    if (isServer) next();
+    // SSR no need to invoke SW caching here
+    else if (!from.name) {
+      // SSR but client side invocation, we need to cache products and invoke requests from asyncData for offline support
       next(async vm => {
-        vm.loading = true
-        await composeInitialPageState(vm.$store, to, true)
-        await vm.$store.dispatch('category-next/cacheProducts', { route: to }) // await here is because we must wait for the hydration
-        vm.loading = false
-      })
-    } else { // Pure CSR, with no initial category state
+        vm.loading = true;
+        await composeInitialPageState(vm.$store, to, true);
+        await vm.$store.dispatch("category-next/cacheProducts", { route: to }); // await here is because we must wait for the hydration
+        vm.loading = false;
+      });
+    } else {
+      // Pure CSR, with no initial category state
       next(async vm => {
-        vm.loading = true
-        vm.$store.dispatch('category-next/cacheProducts', { route: to })
-        vm.loading = false
-      })
+        vm.loading = true;
+        vm.$store.dispatch("category-next/cacheProducts", { route: to });
+        vm.loading = false;
+      });
     }
   },
   methods: {
-    openFilters () {
-      this.mobileFilters = true
+    openFilters() {
+      this.mobileFilters = true;
     },
-    closeFilters () {
-      this.mobileFilters = false
+    closeFilters() {
+      this.mobileFilters = false;
     },
-    async changeFilter (filterVariant) {
-      this.$store.dispatch('category-next/switchSearchFilters', [filterVariant])
+    async changeFilter(filterVariant) {
+      this.$store.dispatch("category-next/switchSearchFilters", [
+        filterVariant
+      ]);
     },
-    columnChange (column) {
-      this.defaultColumn = column
+    columnChange(column) {
+      this.defaultColumn = column;
     },
-    async onBottomScroll () {
-      if (this.loadingProducts) return
-      this.loadingProducts = true
+    async onBottomScroll() {
+      if (this.loadingProducts) return;
+      this.loadingProducts = true;
       try {
-        await this.$store.dispatch('category-next/loadMoreCategoryProducts')
+        await this.$store.dispatch("category-next/loadMoreCategoryProducts");
       } catch (e) {
-        console.error('Problem with fetching more products', e)
+        console.error("Problem with fetching more products", e);
       } finally {
-        this.loadingProducts = false
+        this.loadingProducts = false;
       }
     }
   },
-  metaInfo () {
-    const storeView = currentStoreView()
-    const { meta_title, meta_description, name, slug } = this.getCurrentCategory
-    const meta = meta_description ? [
-      { vmid: 'description', name: 'description', content: htmlDecode(meta_description) }
-    ] : []
-    const categoryLocaliedLink = localizedRoute({
-      name: 'category-amp',
-      params: { slug }
-    }, storeView.storeCode)
-    const ampCategoryLink = this.$router.resolve(categoryLocaliedLink).href
+  metaInfo() {
+    const storeView = currentStoreView();
+    const {
+      meta_title,
+      meta_description,
+      name,
+      slug
+    } = this.getCurrentCategory;
+    const meta = meta_description
+      ? [
+          {
+            vmid: "description",
+            name: "description",
+            content: htmlDecode(meta_description)
+          }
+        ]
+      : [];
+    const categoryLocaliedLink = localizedRoute(
+      {
+        name: "category-amp",
+        params: { slug }
+      },
+      storeView.storeCode
+    );
+    const ampCategoryLink = this.$router.resolve(categoryLocaliedLink).href;
 
     return {
-      link: [ { rel: 'amphtml', href: ampCategoryLink } ],
+      link: [{ rel: "amphtml", href: ampCategoryLink }],
       title: htmlDecode(meta_title || name),
       meta
-    }
+    };
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
-  .btn {
-    &__filter {
-      min-width: 100px;
-    }
+// .btn {
+//   &__filter {
+//     min-width: 100px;
+//   }
+// }
+// .divider {
+//   width: calc(100vw - 8px);
+//   bottom: 20px;
+//   left: -36px;
+// }
+// .category-filters {
+//   width: 242px;
+// }
+
+// .mobile-filters {
+//   display: none;
+//   overflow: auto;
+// }
+
+// .mobile-filters-button {
+//   display: none;
+// }
+
+// .mobile-sorting {
+//   display: none;
+// }
+
+// .category-title {
+//   line-height: 65px;
+// }
+
+// .sorting {
+//   label {
+//     margin-right: 10px;
+//   }
+// }
+
+// @media (max-width: 64em) {
+//   .products-list {
+//     max-width: 530px;
+//   }
+// }
+
+// @media (max-width: 770px) {
+//   .category-title {
+//     margin: 0;
+//     font-size: 36px;
+//     line-height: 40px;
+//   }
+
+//   .products-list {
+//     width: 100%;
+//     max-width: none;
+//   }
+
+//   .mobile-filters {
+//     display: block;
+//   }
+
+//   .mobile-filters-button {
+//     display: block;
+//     height: 45px;
+//   }
+
+//   .sorting {
+//     display: none;
+//   }
+
+//   .mobile-sorting {
+//     display: block;
+//   }
+
+//   .category-filters {
+//     display: none;
+//   }
+
+//   .product-listing {
+//     justify-content: center;
+//   }
+
+//   .mobile-filters {
+//     position: fixed;
+//     background-color: #f2f2f2;
+//     z-index: 5;
+//     padding: 0 40px;
+//     left: 0;
+//     width: 100vw;
+//     height: 100vh;
+//     top: 0;
+//     box-sizing: border-box;
+//   }
+
+//   .mobile-filters-body {
+//     padding-top: 50px;
+//   }
+// }
+
+// .close-container {
+//   left: 0;
+// }
+
+// .close {
+//   margin-left: auto;
+// }
+// </style>
+// <style lang="scss">
+// .product-image {
+//   max-height: unset !important;
+// }
+
+* {
+  border: 1px solid blue;
+}
+
+
+/* 
+Construction of the grid
+*/
+
+@import "~theme/css/vendor/flexboxgrid2";
+
+main#main-category > section {
+  @extend .row;
+  &:not(#breadcrumb) {
+    @extend .container;
   }
-  .divider {
-    width: calc(100vw - 8px);
-    bottom: 20px;
-    left: -36px;
+
+  & div {
+    @extend .center-lg, .center-sm, .center-xs;
+    @extend .middle-lg, .middle-sm, .middle-xs;
+
+    @extend .col-lg-12, .col-md-12, .col-sm-12, .col-xs-12;
   }
-  .category-filters {
-    width: 242px;
-  }
-
-  .mobile-filters {
-    display: none;
-    overflow: auto;
-  }
-
-  .mobile-filters-button {
-    display: none;
-  }
-
-  .mobile-sorting {
-    display: none;
-  }
-
-  .category-title {
-    line-height: 65px;
-  }
-
-  .sorting {
-    label {
-      margin-right: 10px;
-    }
-  }
-
-  @media (max-width: 64em) {
-    .products-list {
-      max-width: 530px;
-    }
-  }
-
-  @media (max-width: 770px) {
-    .category-title {
-      margin: 0;
-      font-size: 36px;
-      line-height: 40px;
-    }
-
-    .products-list {
-      width: 100%;
-      max-width: none;
-    }
-
-    .mobile-filters {
-      display: block;
-    }
-
-    .mobile-filters-button {
-      display: block;
-      height: 45px;
-    }
-
-    .sorting {
-      display: none;
-    }
-
-    .mobile-sorting {
-      display: block;
-    }
-
-    .category-filters {
-      display: none;
-    }
-
-    .product-listing {
-      justify-content: center;;
-    }
-
-    .mobile-filters {
-      position: fixed;
-      background-color: #F2F2F2;
-      z-index: 5;
-      padding: 0 40px;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      top: 0;
-      box-sizing: border-box;
-    }
-
-    .mobile-filters-body {
-      padding-top: 50px;
-    }
-  }
-
-  .close-container {
-    left: 0;
-  }
-
-  .close {
-    margin-left: auto;
-  }
-</style>
-<style lang="scss">
-.product-image {
-  max-height: unset !important;
 }
 </style>
