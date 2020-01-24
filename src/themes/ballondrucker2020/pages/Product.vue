@@ -762,9 +762,10 @@ Construction of the grid
 @import "~theme/css/vendor/flexboxgrid2";
 
 main#main-product > section {
-  @extend .row ,.container;
-  margin-left: auto;
-  margin-right: auto;
+  @extend .row;
+  &:not(#breadcrumb) {
+    @extend .container;
+  }
 
   & div {
     @extend .center-lg, .center-sm, .center-xs;
